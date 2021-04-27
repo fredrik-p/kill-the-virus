@@ -6,7 +6,13 @@ const debug = require('debug')('kill-the-virus:socket_controller');
 
 let players = {}
 let availableRoom = 1
-let games = []
+let games = [
+    {
+        room: 'something',
+        players: ['test', 'test'],
+        ready: 0
+    }
+]
 
 let io = null;
 
@@ -22,12 +28,11 @@ const handleNewPlayer = function (username) {
 
         let game = {
             room,
-            players
+            players,
+            ready: 0
         }
 
         games.push(game)
-
-        debug(games)
 
         io.to(room).emit('newGame', players);
 
@@ -39,6 +44,15 @@ const handleNewPlayer = function (username) {
     }
 };
 
+const handleReady = function () {
+    const game = games.find(id => id.players[this.id]);
+    game.ready++
+
+    if (game.ready === 2) {
+        // start the game
+    }
+}
+
 
 const handleDisconnect = function () {
     delete players[this.id]
@@ -49,8 +63,8 @@ module.exports = function (socket) {
     io = this;
     debug(`Client ${socket.id} connected!`);
 
-    socket.on('newPlayer', handleNewPlayer)
+    socket.on('newPlayer', handleNewPlayer);
 
-    socket.on('disconnect', handleDisconnect)
+    socket.on('disconnect', handleDisconnect);
 
 }
