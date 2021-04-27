@@ -5,28 +5,39 @@
 const debug = require('debug')('kill-the-virus:socket_controller');
 
 let players = {}
+let availableRoom = 1
+
+let io = null;
 
 const handleNewPlayer = function (username) {
     players[this.id] = username;
 
+    this.join('game-' + availableRoom)
+
     // if 2, start the game
     if (Object.keys(players).length === 2) {
-        // start the game
-        this.server.emit('newGame', players)
+
+        const room = 'game-' + availableRoom
+
+        // start game
+        io.to(room).emit('newGame', players)
+
 
         // empty players
         players = {}
+
+        availableRoom++
     }
 };
 
 
 const handleDisconnect = function () {
-    debug(players[this.id], 'disconnected')
     delete players[this.id]
 };
 
 
 module.exports = function (socket) {
+    io = this;
     debug(`Client ${socket.id} connected!`);
 
     socket.on('newPlayer', handleNewPlayer)
