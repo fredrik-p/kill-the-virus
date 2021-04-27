@@ -6,21 +6,30 @@ const debug = require('debug')('kill-the-virus:socket_controller');
 
 let players = {}
 let availableRoom = 1
+let games = []
 
 let io = null;
 
 const handleNewPlayer = function (username) {
     players[this.id] = username;
 
-    this.join('game-' + availableRoom)
+    this.join('game-' + availableRoom);
 
     // if 2, start the game
     if (Object.keys(players).length === 2) {
 
         const room = 'game-' + availableRoom
 
-        // start game
-        io.to(room).emit('newGame', players)
+        let game = {
+            room,
+            players
+        }
+
+        games.push(game)
+
+        debug(games)
+
+        io.to(room).emit('newGame', players);
 
 
         // empty players
