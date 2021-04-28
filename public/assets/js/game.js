@@ -2,7 +2,9 @@
  * Game
  */
 
-var socket = io();
+let socket = io();
+
+const virusEl = document.querySelector('#virus');
 
 // Listen for when the player form is submited
 document.querySelector('#player-form').addEventListener('submit', e => {
@@ -33,4 +35,25 @@ socket.on('newGame', (players) => {
 document.querySelector('#player1 button').addEventListener('click', () => {
     document.querySelector('#player1 button').innerHTML = 'Ready!'
     socket.emit("ready")
+
+})
+
+socket.on('startGame', (delay, position1, position2) => {
+    //remove ready buttons
+    document.querySelector('#player1 button').classList.add('hide');
+    document.querySelector('#player2 button').classList.add('hide');
+
+    // add the position to the virus
+    virusEl.style.gridColumn = position1;
+    virusEl.style.gridRow = position2;
+
+    // remove the class hide from the virus
+    setTimeout(() => {
+        virusEl.classList.remove('hide');
+
+        // add timer
+        virusEl.removeEventListener('click', clickedFunction)
+        virusEl.addEventListener('click', clickedFunction)
+
+    }, delay)
 })
