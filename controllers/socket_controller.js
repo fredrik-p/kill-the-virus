@@ -6,13 +6,7 @@ const debug = require('debug')('kill-the-virus:socket_controller');
 
 let players = {}
 let availableRoom = 1
-let games = [
-    {
-        room: 'something',
-        players: ['test', 'test'],
-        ready: 0
-    }
-]
+let games = []
 
 let io = null;
 
@@ -31,13 +25,14 @@ const handleNewPlayer = function (username) {
 
     // if 2, start the game
     if (Object.keys(players).length === 2) {
-
         const room = 'game-' + availableRoom
 
         let game = {
             room,
             players,
-            ready: 0
+            ready: 0,
+            rounds: 0,
+            clicks: [],
         }
 
         games.push(game)
@@ -58,7 +53,30 @@ const handleReady = function () {
 
     if (game.ready === 2) {
         // start the game
-        io.to(game.room).emit('startGame', getRandomDelay(), getRandomPosition(), getRandomPosition())
+
+        io.to(game.room).emit('startGame', getRandomDelay, getRandomPosition(), getRandomPosition())
+    }
+}
+
+const handleClicked = function () {
+    const game = games.find(id => id.players[this.id]);
+
+    io.to(game.room).emit('stopTimer', this.id)
+
+    game.clicks.push(this.id)
+
+    if (game.clicks.length === 2) {
+
+        io.to(game.room).emit('getPoint', this.id)
+
+        game.clicks = []
+
+        game.rounds++
+
+        if (game.rounds < 10) {
+            delay = getRandomDelay()
+            io.to(game.room).emit('startGame', delay, getRandomPosition(), getRandomPosition())
+        }
     }
 }
 
@@ -75,5 +93,9 @@ module.exports = function (socket) {
     socket.on('newPlayer', handleNewPlayer);
 
     socket.on('disconnect', handleDisconnect);
+
+    socket.on('ready', handleReady);
+
+    socket.on('clicked', handleClicked);
 
 }

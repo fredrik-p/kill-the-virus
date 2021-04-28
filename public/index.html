@@ -11,47 +11,49 @@
 </head>
 <body>
     <div id="app">
-        <div id="app">
-            <div id="register-player">
-                <h1>Kill the virus!</h1>
-                <form id="player-form">
-                    <div class="form-group">
-                        <input type="text" id="username" required placeholder="Your name">
-                    </div>
-    
-                    <button type="submit">Play!</button>
-                </form>
+        <div id="register-player">
+            <h1>Kill the virus!</h1>
+            <form id="player-form">
+                <div class="form-group">
+                    <input type="text" id="username" required placeholder="Your name">
+                </div>
+
+                <button type="submit">Play!</button>
+
+                <span id="loading" class="hide">Waiting for player...</span>
+            </form>
+        </div>
+
+        <div id="game" class="hide">
+            <div id="player1">
+                <h1></h1>
+                <button>Ready?</button>
+                <ul id="timer1"></ul>
+
             </div>
+
+            <div id="gameArea">
+                <div id="score">
+                    <span id="player1Score">0</span>-<span id="player2Score">0</span>
+                </div>
+                
+                <span id="announceWinner"></span>
+
+                <div id="playArea">
+                    <span id="virus" class="hide"></span>
+                </div>
+            </div>
+
+            <div id="player2">
+                <h1></h1>
+                <ul id="timer2"></ul>
+
+            </div>
+
+        </div>
+
     </div>
-
-    <div id="game" class="hide">
-        <div id="player1">
-            <h1></h1>
-            <button>Ready?</button>
-
-        </div>
-        <div id="gameArea">
-            <div id="score">
-                <span id="player1Score">0</span>-<span id="player2Score">0</span>
-
-            </div>
-
-            <div id="playArea">
-                <span id="virus" class="hide"></span>
-
-            </div>
-        </div>
-
-        <div id="player2">
-            <h1></h1>
-            <button>Ready?</button>
-
-        </div>
-
-    </div> 
-
-</div>
-
+    
     <script src="/assets/js/moment.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 	<script src="/assets/js/game.js"></script>
