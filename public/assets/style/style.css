@@ -12,7 +12,7 @@
     width: 100vw;
     background-image: url('../images/background-image.jpg');
     background-size: cover;
-    font-family: 'Knewave', cursive;
+    font-family: "Knewave", roboto,;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -150,7 +150,7 @@
 }
 
 .winnerGif, .looser, .tie {
-    width: 350px;
+    width: 450px;
     height: auto;
     margin-top: 2rem;
 }
