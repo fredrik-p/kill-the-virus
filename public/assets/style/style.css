@@ -111,10 +111,12 @@
 
 #timer1, #timer2 {
     list-style: none;
+   
 }
 
 #timer1 li, #timer2 li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem; 
+    color: rgb(245, 196, 141)
 }
 
 #gameArea {
