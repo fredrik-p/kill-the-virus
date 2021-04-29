@@ -121,4 +121,15 @@ socket.on('stopTimer', (id) => {
     id === socket.id
         ? clearInterval(timer1)
         : clearInterval(timer2)
+
+})
+
+socket.on('winner', () => {
+    if (document.querySelector('#player1Score').innerHTML > document.querySelector('#player2Score').innerHTML) {
+        document.querySelector('#winner').innerHTML = 'Woho, you won! <br> <img src="https://media3.giphy.com/media/2sXf9PbHcEdE1x059I/giphy.gif" class="winnerGif" alt="winner gif">'
+    } else if (document.querySelector('#player1Score').innerHTML < document.querySelector('#player2Score').innerHTML) {
+        document.querySelector('#winner').innerHTML = 'Sorry buddy, second place is not bad.. <br><img src="https://images.unsplash.com/photo-1583511655805-3d0a917bd436?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1949&q=80" class="looser" alt="cute dog">'
+    } else {
+        document.querySelector('#winner').innerHTML = 'Wow, you are both winners! <br><img src="https://i.pinimg.com/originals/be/18/8d/be188dee76a06901e320ad22b37370d0.jpg" class="tie" alt="tie meme">'
+    }
 })

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Kill the virus!</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -15,10 +16,10 @@
             <h1>Kill the virus!</h1>
             <form id="player-form">
                 <div class="form-group">
-                    <input type="text" id="username" required placeholder="Your name">
+                    <input type="text" id="username" required placeholder="Enter your name">
                 </div>
 
-                <button type="submit">Play!</button>
+                <button class="btn btn-danger btn-circle btn-xl" type="submit">Play</button>
 
                 <span id="loading" class="hide">Waiting for player...</span>
             </form>
@@ -27,7 +28,7 @@
         <div id="game" class="hide">
             <div id="player1">
                 <h1></h1>
-                <button>Ready?</button>
+                <button btn btn-danger btn-circle btn-xl>Ready?</button>
                 <ul id="timer1"></ul>
 
             </div>
@@ -37,7 +38,7 @@
                     <span id="player1Score">0</span>-<span id="player2Score">0</span>
                 </div>
                 
-                <span id="announceWinner"></span>
+                <span id="winner"></span>
 
                 <div id="playArea">
                     <span id="virus" class="hide"></span>
