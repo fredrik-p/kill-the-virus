@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Knewave&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Knewave&family=Roboto:wght@100&display=swap');
 
 * {
     margin: 0;
@@ -12,7 +12,7 @@
     width: 100vw;
     background-image: url('../images/background-image.jpg');
     background-size: cover;
-    font-family: 'Knewave', 'roboto';
+    font-family: 'Knewave', 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
