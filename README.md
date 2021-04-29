@@ -1,6 +1,6 @@
 # 🦠 Kill the virus! 🦠
 
-**live:** <https://freds-kill-the-virus.herokuapp.com/>
+**Live:** <https://freds-kill-the-virus.herokuapp.com/>
 
 Det här är inlämningsuppgift 2 i kursen Dynamisk webbutveckling.
 Teknikerna som skulle användas är Node.js, Express och Socket.io.
