@@ -1,4 +1,4 @@
-# 🦠 kill-the-virus 🦠
+# 🦠 Kill the virus! 🦠
 
 **live:** <https://freds-kill-the-virus.herokuapp.com/>
 
